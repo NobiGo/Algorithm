@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="stdlib">
     <CLASSES>
-      <root url="jar://$USER_HOME$/Desktop/stdlib.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/stdlib.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

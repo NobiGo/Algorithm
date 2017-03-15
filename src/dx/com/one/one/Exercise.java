@@ -2,8 +2,10 @@ package dx.com.one.one;
 
 import com.algs4.stdlib.StdIn;
 import com.algs4.stdlib.StdOut;
+import com.algs4.stdlib.StdRandom;
 
 import java.util.Random;
+
 
 /**
  * Created by dx on 2017/3/12.
@@ -17,8 +19,13 @@ public class Exercise {
 //        method119();
 //        method1111();
 //        method1114();
-        method1115();
+//        method1115();
+//        method1121();
+//    method1122();
+        methodisPalindrome();
     }
+
+
 
 
     /**
@@ -139,7 +146,64 @@ public class Exercise {
         Random random = new Random();
         for(int i = 0;i<=100;i++)
             System.out.println(random.nextInt(5));
+    }
+    /**
+     * 1.1.21
+     */
 
+    public static void method1121(){
+        while(StdIn.hasNextLine()){
+            String value = StdIn.readLine();
+            String[] values = value.split(" ");
+            int a = Integer.valueOf(values[1]);
+            int b = Integer.valueOf(values[2]);
+            StdOut.print(values[0]+"  "+a+" "+b+"   "+a/b);
+        }
+    }
+    /**
+     * 1.1.22
+     */
+
+    public static  void method1122() {
+        int[] a = {1,2,3,4,8,89,100};
+        StdOut.println(rank(3,a,0,6));
+        StdOut.print(i);
     }
 
+    //i用来保存深度
+    static int   i = 0;
+    public static int rank(int key,int [] a,int lo,int high){
+        StdRandom.bernoulli();
+        System.out.println("lo="+lo+"--------"+"high="+high);
+        i ++;
+        //带有条件的返回语句
+        if(lo>high) return -1;
+        //取得中间元素
+        int mid = lo+(high-lo)/2;
+        if(key>a[mid])  return rank(key,a,mid+1,high);
+        else if(key<a[mid]) return rank(key,a,lo,mid-1);
+        else return mid;
+    }
+
+
+    /**
+     * 判断字符串时候是回文
+     */
+    public static void methodisPalindrome(){
+        String value = "abcba";
+        int length = value.length();
+        for(int  i =0;i<length/2;i++){
+            if(value.charAt(i)!=value.charAt(length-i-1))
+                System.out.println("不是回文");
+            System.out.println("是回文");
+        }
+    }
+
+    /**
+     * 再谈输入输出
+     */
+
+    public static void methodInOut(){
+
+    }
 }
