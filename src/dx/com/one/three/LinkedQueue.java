@@ -13,8 +13,8 @@ public class LinkedQueue<Item> implements Iterable<Item> {
     }
 
     //定义节点的首节点和尾节点
-    Node first;
-    Node last;
+    private Node first;
+    private Node last;
     int length;
 
     @Override
@@ -51,15 +51,16 @@ public class LinkedQueue<Item> implements Iterable<Item> {
 
     //进入队列
     public void enqueue(Item item) {
+        Node oldLast = last;
         Node node = new Node();
         node.item = item;
         node.Next = null;
-        if (first == null && last == null) {
+        if (isEmpty()) {
             first = node;
             last = first;
         } else {
-            last.Next = node;
-            last = last.Next;
+            node.Next = last;
+            last = node;
         }
         length++;
     }
