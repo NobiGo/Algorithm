@@ -4,7 +4,7 @@ package dx.com.one.JavaExercixe;
  * Created by dx on 2017/3/17.
  */
 
-class Person  implements  Cloneable{
+class Person implements Cloneable {
     String name;
     int age;
 
@@ -44,21 +44,22 @@ class Person  implements  Cloneable{
 }
 
 public class CloneTest {
-    public static void main(String[] args) throws  Exception{
-        //复制引用
-        System.out.println("====================复制引用==========================");
+    public static void main(String[] args) throws Exception {
+//        //复制引用
+//        System.out.println("====================复制引用==========================");
         Person p1 = new Person("dx", 12);
-        System.out.println(p1.toString());
-        Person p2 = p1;
-        System.out.println(p2.toString());
-        p2.setName("wwj");
-        System.out.println("p2改变姓名");
-        System.out.println(p1.toString());
+//        System.out.println(p1.toString());
+//        Person p2 = p1;
+//        System.out.println(p2.toString());
+//        p2.setName("wwj");
+//        System.out.println("p2改变姓名");
+//        System.out.println(p1.toString());
         //克隆对象
         System.out.println("=====================克隆引用============================");
         Person p3 = (Person) p1.clone();
         System.out.println(p3.toString());
-        p3.setName("dx");
+        p3.setName("wwj");
         System.out.println(p3.toString());
+        System.out.println(p1.toString());
     }
 }
