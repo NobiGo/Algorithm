@@ -1,0 +1,135 @@
+package dx.com.two;
+
+/**
+ * Created by dx on 2017/3/28.
+ */
+public class Example2421 {
+
+}
+
+//栈的实现（数组）实现无序，每次弹出最大的元素
+class TopM {
+    //保存栈中的元素
+    String[] values;
+    //保存栈中最大元素
+    String item;
+    //保存栈顶元素
+    int top;
+
+    public TopM(int cap) {
+        values = new String[cap];
+    }
+
+    //压入元素
+    public void push(String item) {
+        values[top++] = item;
+    }
+
+    //将最大元素保存在栈顶
+    public void sort() {
+        if (top == 1)
+            return;
+        int i = top;
+        String max = values[i - 1];
+        for (i = i - 1; i >= 0; i++) {
+        }
+    }
+
+    //弹出元素
+    public Item pop() {
+        Item item = values[--top];
+        return item;
+    }
+
+}
+
+
+//定容字符串栈的实现
+class StringStack {
+    //用于保存字符串栈
+    String[] values = null;
+    //表示栈顶元素的位置
+    int top = 0;
+
+    public StringStack(int n) {
+        values = new String[n];
+    }
+
+    //判断栈是否已满
+    public boolean isFull() {
+        return top == values.length;
+    }
+
+    //向栈中插入元素
+    public void insert(String string) {
+        values[top++] = string;
+    }
+
+    //弹出栈顶元素
+    public String pop() {
+        return values[--top];
+    }
+
+    //重新改变栈的大小
+    public void size(int cap) {
+        String[] strs = new String[cap];
+        for (int i = 0; i < top; i++) {
+            strs[i] = values[i];
+        }
+        values = strs;
+    }
+
+    //判断是否为空
+    public boolean isEmpty() {
+        return top == 0;
+    }
+    //某种元素的定容栈的实现
+
+    class StackOfItem<Item> {
+        Item[] values;
+        //表示栈顶元素的位置
+        int top;
+
+        public StackOfItem(int cap) {
+            values = (Item[]) new Object[cap];
+        }
+
+        //判断栈是否为空
+        public boolean isEmpty() {
+            return top == 0;
+        }
+
+        //向栈中加入元素
+        public void push(Item item) {
+            if (top == values.length)
+                size(2 * values.length);
+            values[top++] = item;
+        }
+
+        //判断栈是否已满
+        public boolean isFull() {
+            return top == values.length;
+        }
+
+        //重新改变栈的大小
+        public void size(int cap) {
+            //Java中不允许建立泛型数组
+            Item[] items = (Item[]) new Object[cap];
+            for (int i = 0; i < top; i++) {
+                items[i] = values[i];
+            }
+            values = items;
+        }
+
+        //弹出栈顶元素
+        public Item pop() {
+            Item item = values[--top];
+            values[top] = null;
+            if (top > 0 && top == values.length / 4)
+                size(values.length / 2);
+            return item;
+        }
+    }
+
+
+}

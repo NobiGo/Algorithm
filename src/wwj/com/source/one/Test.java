@@ -1,11 +1,13 @@
 package wwj.com.source.one;
-import edu.princeton.cs.algs4.BinarySearch;
-import edu.princeton.cs.algs4.*;
+
+import com.algs4.stdlib.StdIn;
+import com.algs4.stdlib.StdOut;
+
 /**
  * Created by Jerry on 2017/3/22.
  */
 public class Test {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         StdOut.print("Type a string: ");
         String s = StdIn.readString();
         StdOut.println("Your string was: " + s);

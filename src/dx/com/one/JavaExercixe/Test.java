@@ -1,10 +1,10 @@
-package dx.com.two;
+package dx.com.one.JavaExercixe;
 
 /**
  * Created by dx on 2017/3/28.
  */
-public class Example241 {
+public class Test {
     public static void main(String[] args) {
-        int M = Integer.parseInt(args[0]);
+        System.out.println(3/2);
     }
 }
