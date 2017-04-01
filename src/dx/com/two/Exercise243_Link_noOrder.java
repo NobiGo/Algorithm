@@ -12,6 +12,7 @@ public class Exercise243_Link_noOrder {
         maxLincOrder.insert("z");
         maxLincOrder.insert("w");
         System.out.println("元素添加成功");
+        maxLincOrder.printLinc();
         System.out.println(maxLincOrder.delMax());
         System.out.println(maxLincOrder.delMax());
         System.out.println(maxLincOrder.delMax());
@@ -47,6 +48,13 @@ class MaxLincOrder<Item extends Comparable<Item>> {
         length++;
     }
 
+    public void printLinc() {
+        Node node = this.head;
+        while (node != null) {
+            System.out.println(node.item.toString());
+            node = node.Next;
+        }
+    }
 
     private boolean less(Item item1, Item item2) {
         return item1.compareTo(item2) < 0;
@@ -57,17 +65,22 @@ class MaxLincOrder<Item extends Comparable<Item>> {
 
         Node node = head;
         Node prenode = head;
-        Item max = head.item;
+        Node max = head;
 
         while (node.Next != null) {
-            if (less(max, node.Next.item)) {
-                max = node.Next.item;
+            if (less(max.item, node.Next.item)) {
+                max = node.Next;
                 prenode = node;
             }
             node = node.Next;
         }
-        prenode.Next = node.Next;
+
+        if (max == head) {
+            head = head.Next;
+        } else {
+            prenode.Next = max.Next;
+        }
         length--;
-        return max;
+        return max.item;
     }
 }
