@@ -4,6 +4,8 @@ package dx.com.three;
  * Created by dx on 2017/4/3.
  */
 public class Example33 {
+    String str;
+    Object object;
 }
 
 class BST<Key extends Comparable<Key>, Value> {
@@ -12,8 +14,9 @@ class BST<Key extends Comparable<Key>, Value> {
         Key key;//键
         Value value;//值
         Node left, right;//左右指针
-        int number;//以该节点为根的子树中包含的节点个数
+        int number;//以该节点为根的子树中包含的多加点总数
 
+        //初始化节点
         public Node(Key key, Value value, int number) {
             this.key = key;
             this.value = value;
@@ -21,36 +24,39 @@ class BST<Key extends Comparable<Key>, Value> {
         }
     }
 
+    //定义二插查找树的根节点
+    private Node root;
 
     public Key min() {
         return min(root).key;
     }
 
+    //返回树中的最小结点
     private Node min(Node node) {
         if (node.left == null)
             return node;
         return min(node.left);
-
     }
 
+    //返回树中的最大结点
     public Key max() {
         return max(root).key;
     }
 
+
+    //返回树中的最大结点
     private Node max(Node node) {
         if (node.right == null)
             return node;
         return max(node.right);
     }
 
-
-    //定义二插查找树的根节点
-    private Node root;
-
+    //返回总的结点个数
     public int size() {
         return size(root);
     }
 
+    //返回以Node结点为根节点的结点个数
     private int size(Node node) {
         if (node == null)
             return 0;
@@ -72,17 +78,16 @@ class BST<Key extends Comparable<Key>, Value> {
         return x.key;
     }
 
-
+    //获得小于等于Key的最大值
     private Node floor(Node node, Key key) {
         //判断节点是否为空，空返回null
         if (node == null)
             return null;
         //将根节点与节点的key值进行比表
-        int cmp = node.key.compareTo(key);
+        int cmp = key.compareTo(node.key);
         //找到等于该节点的节点
         if (cmp == 0)
             return node;
-        //
         if (cmp < 0)
             return floor(node.left, key);
         Node temp = floor(node.right, key);
@@ -92,19 +97,23 @@ class BST<Key extends Comparable<Key>, Value> {
             return node;
     }
 
+    //在以node为根节点的树下，获得key对应的value值
     private Value get(Node node, Key key) {
+        //如果node为空，则返回null
         if (node == null)
             return null;
+        //观察节点与key的比较值，如果结点的值大，则在左子树中进行查找，否则在右子树中进行查找
         int cmp = node.key.compareTo(key);
         if (cmp < 0)
             return get(node.left, key);
         else if (cmp > 0)
             return get(node.right, key);
         else
+            //当cmp==0时，说明查找到相应的值
             return node.value;
     }
 
-    //向二叉树中叉入值
+    //向二叉树中插入值
     public void put(Key key, Value value) {
         put(root, key, value);
     }
@@ -139,6 +148,7 @@ class BST<Key extends Comparable<Key>, Value> {
     }
 
 
+    //返回指定键在键中的排名
     public int rank(Key key) {
         return rank(key, root);
     }
@@ -152,6 +162,6 @@ class BST<Key extends Comparable<Key>, Value> {
         else if (cmp > 0)
             return 1 + size(node.left) + rank(key, node.right);
         else
-            return size(node.left);//size返回每个节点以下包含的节点总是
+            return size(node.left);//size返回每个节点以下包含的节点总数
     }
 }

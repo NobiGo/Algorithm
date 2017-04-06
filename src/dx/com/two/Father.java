@@ -1,13 +1,21 @@
 package dx.com.two;
 
 /**
- * Created by dx on 2017/4/1.
+ * Created by dx on 2017/4/4.
  */
-public class Person {
+public class Father {
     private String name;
     private int age;
 
-    public Person(String name, int age) {
+    public Father() {
+
+    }
+
+    public Father(String name) {
+        this.name = name;
+    }
+
+    public Father(String name, int age) {
         this.name = name;
         this.age = age;
     }
@@ -26,6 +34,7 @@ public class Person {
 
     public void setName(String name) {
         this.name = name;
+        System.out.println("姓名设置为：" + name);
     }
 
     public static void printPerson() {
@@ -37,9 +46,9 @@ public class Person {
         System.out.println("掉用equals方法");
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Person person = (Person) o;
-        if (age != person.age) return false;
-        return name != null ? name.equals(person.name) : person.name == null;
+        Father father = (Father) o;
+        if (age != father.age) return false;
+        return name != null ? name.equals(father.name) : father.name == null;
     }
 
     @Override
@@ -52,7 +61,7 @@ public class Person {
 
     @Override
     public String toString() {
-        return "Person{" +
+        return "Father{" +
                 "name='" + name + '\'' +
                 ", age=" + age +
                 '}';

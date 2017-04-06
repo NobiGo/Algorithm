@@ -32,6 +32,7 @@ public class Exercise311 {
 }
 
 class ST<Key extends Comparable<Key>, Value> {
+
     //利用数组保存符号表中的值
     private Key[] keys;//保存键
     private Value[] values;//保存值
