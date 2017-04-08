@@ -1,5 +1,8 @@
 package dx.com.three;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * Created by dx on 2017/4/3.
  */
@@ -147,6 +150,44 @@ class BST<Key extends Comparable<Key>, Value> {
         return node;
     }
 
+    //删除数结点中的最小值
+    public void deleteMin() {
+        root = deleteMin(root);
+    }
+
+    //删除最小值
+    private Node deleteMin(Node node) {
+        if (node.left == null)
+            return node.right;
+        node.left = deleteMin(node.left);
+        node.number = 1 + size(node.left) + size(node.right);
+        return null;
+    }
+
+    //删除特定键
+    public void delete(Key key) {
+        root = delete(key, root);
+    }
+
+    private Node delete(Key key, Node node) {
+        if (node == null)
+            return null;
+        int cmp = key.compareTo(node.key);
+        if (cmp < 0)
+            node.left = delete(key, node.left);
+        else if (cmp > 0)
+            node.right = delete(key, node.right);
+        else {
+            if (node.left == null) return node.right;
+            if (node.right == null) return node.left;
+            Node temp = node;
+            node = min(temp.right);
+            node.right = deleteMin(temp.right);
+            node.left = temp.left;
+        }
+        node.number = size(node.left) + size(node.right) + 1;
+        return node;
+    }
 
     //返回指定键在键中的排名
     public int rank(Key key) {
@@ -163,5 +204,39 @@ class BST<Key extends Comparable<Key>, Value> {
             return 1 + size(node.left) + rank(key, node.right);
         else
             return size(node.left);//size返回每个节点以下包含的节点总数
+    }
+
+
+    //中序遍历
+    public void print(Node node) {
+        if (node == null)
+            return;
+        print(node.left);
+        System.out.println(node.key);
+        print(node.right);
+    }
+
+    //二插查找树的范围查找操作
+    public Iterable<Key> keys() {
+        return keys(min(), max());
+    }
+
+    private Iterable<Key> keys(Key lo, Key hi) {
+        Queue<Key> queue = new LinkedList<Key>();
+        keys(root, queue, lo, hi);
+        return queue;
+    }
+
+    private void keys(Node node, Queue queue, Key lo, Key hi) {
+        if (node == null)
+            return;
+        int cmplo = lo.compareTo(node.key);
+        int cmphi = hi.compareTo(node.key);
+        if (cmplo < 0)
+            keys(node.left, queue, lo, hi);
+        if (cmplo <= 0 && cmphi >= 0)
+            queue.offer(node.key);
+        else if (cmplo > 0)
+            keys(node.right, queue, lo, hi);
     }
 }

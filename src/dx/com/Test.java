@@ -3,7 +3,6 @@ package dx.com;
 import dx.com.two.Father;
 import dx.com.two.Son;
 
-import java.lang.annotation.Annotation;
 import java.lang.reflect.*;
 
 /**
@@ -14,6 +13,12 @@ public class Test {
     private final static String STR = "100";
 
     public static void main(String[] args) throws Exception {
+        String string = "str";
+        System.out.println(string.toUpperCase());
+        System.out.println(string);
+    }
+
+    private static void method50() throws NoSuchFieldException, IllegalAccessException {
         Class class1 = Test.class;
         Field field = class1.getDeclaredField("STR");
         field.setAccessible(true);
