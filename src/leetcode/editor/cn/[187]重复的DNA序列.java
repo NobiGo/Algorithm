@@ -60,7 +60,7 @@ class Solution {
         for (int i = 0; i <= s.length() - subLength; i++) {
             tempValue = ((tempValue << 2) | s.charAt(i + subLength -1)) & (1 << (2 * subLength) - 1);
             value.put(tempValue, value.getOrDefault(tempValue, 0) + 1);
-            if (value.get(i) == 2) {
+            if (value.get(tempValue) == 2) {
                 result.add(s.substring(i, i + subLength));
             }
         }
